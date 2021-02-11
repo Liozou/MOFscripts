@@ -24,6 +24,7 @@ Usually this is simply ("x", "y", "z").
 function find_refid(eqs)
     isempty(eqs) && return ("x", "y", "z")
     for eq in eqs # Normally it should be the first one but I'm not sure of the specs here
+        eq = filter(x -> !isspace(x), eq) # remove whitespaces
         ts = collect(tokenize(eq))
         any(Tokenize.Tokens.isoperator∘Tokenize.Tokens.kind, ts) && continue
         refid = [""]

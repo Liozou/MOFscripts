@@ -79,6 +79,12 @@ end
     @test readuntil(piperead, '\n') == "tbo"
 
     empty!(ARGS)
+    path = joinpath(cifs, "HKUST-1_2.cif")
+    push!(ARGS, "-c", "mof", path)
+    @test CrystalNets.julia_main() == 0
+    @test readuntil(piperead, '\n') == "tbo"
+
+    empty!(ARGS)
     path = joinpath(cifs, "Diamond.cif")
     push!(ARGS, "-c", "atom", path)
     @test CrystalNets.julia_main() == 0
